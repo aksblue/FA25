@@ -1,1 +1,0 @@
- github pages link: https://github.com/aksblue/FA25?tab=readme-ov-file
