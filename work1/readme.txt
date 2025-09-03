@@ -1,1 +1,1 @@
- github pages link: https://github.com/aksblue/FA25/tree/main/work1
+ github pages link: https://aksblue.github.io/FA25/work1/test.html
