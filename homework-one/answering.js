@@ -78,9 +78,9 @@ function MontysMegaBar() {
     let drinks = 3;
 
     // Calculate total cost
-    adultTolal = adults * adultPrice;
-    childTotal = children * childPrice;
-    drinkTotal = drinks * drinkPrice;
+    let adultTolal = adults * adultPrice;
+    let childTotal = children * childPrice;
+    let drinkTotal = drinks * drinkPrice;
     let total = adultTolal + childTotal + drinkTotal;
 
     // Update HTML using helper function
