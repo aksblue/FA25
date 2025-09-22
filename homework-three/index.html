@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interest Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 6px;
+            margin: 4px 0;
+           
+        }
+
+        button {
+            padding: 6px 12px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result_value {
+            margin-top: 12px;
+            padding: 8px;
+            background: #eee;
+        }
+        p {
+            font-weight: bold;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Interest Calculator</h2>
+
+    <p>Principle</p>
+    <input id="principle_input" type="number" placeholder="Enter principle amount">
+
+    <p>Interest Rate</p>
+    <input id="interest_rate_input" type="number" placeholder="Percent per year">
+
+    <p>Time</p>
+    <input id="time_input" type="number" placeholder="Time in years">
+
+    <button id="calculate_butn">Calculate</button>
+
+    <p>Results</p>
+    <div id="result_value"></div>
+
+    <script src="interestCalculator.js"></script>
+</body>
+
+</html>
