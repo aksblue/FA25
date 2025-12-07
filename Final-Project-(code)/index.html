@@ -10,11 +10,29 @@
  <body>
     
 
+    <h1>My Anime Search</h1>
+
+    <div class="search-box">
+        <input id="search-input" type="text" placeholder="Type an anime name">
+        <button id="search-button">Search</button>
+    </div>
+    <section class="output-space">
+        <div id="anime-card" class="card hidden">
+            <img id="anime-image" src="" alt="">
+            <h2 id="anime-title"></h2>
+            <p id="anime-text"></p>
+            <p id="anime-score"></p>
+        </div>
+    </section>
 
 
 
+    <h3 class="recent-searches-title">Recent Searches</h3>
+    <div id="recent-grid"></div>
 
 
+
+    <script src="script.js"></script>
 
 
  </body>
