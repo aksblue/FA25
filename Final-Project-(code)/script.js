@@ -7,6 +7,7 @@ const animeTitle = document.getElementById("anime-title");
 const animeText = document.getElementById("anime-text");
 const animeScore = document.getElementById("anime-score");
 const grid = document.getElementById("recent-grid");
+const recentTitle = document.getElementById("recent-title");
 
 searchButton.addEventListener('click', async() => {
     const name = input_box.value.trim();
@@ -90,6 +91,9 @@ searchButton.addEventListener('click', async() => {
 const recentAnimeData = {}; // key = title, value = full save object
 
 function addRecentSearch(saveData) {
+
+    // show the recent h3
+    recentTitle.style.display = "block";
     
     const key = saveData.title.toLowerCase().trim();
 
@@ -127,6 +131,7 @@ function addRecentSearch(saveData) {
 
     //score
     p.textContent = "Score: " + saveData.score;
+    box.style.background = saveData.backgroundColor;
 
     //append to the box
     box.appendChild(img);
