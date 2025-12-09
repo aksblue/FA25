@@ -1,39 +1,25 @@
-Title: My Anime Search
+# My Anime Search
 
-Project Concept
-
+## Project Concept
 My Anime Search is a web application that allows users to search for anime by name and view details such as the title, synopsis, score, and image. The project demonstrates how to dynamically update web page content using JavaScript and fetch data from an external API.
 
-Why This Theme Was Chosen
+## Why This Theme Was Chosen
+I chose this theme because of my interest in anime and I wanted to gain experience using JavaScript features learned in class, like asynchronous operations and DOM manipulation. It also allowed me to practice building interactive, user-friendly interfaces.
 
-I chose this theme because of my interest in anime and i wanted to gain experience using JavaScript features  that i learned in class, like asynchronous operations and DOM manipulation. It also allowed me to practice building interactive, user friendly interfaces.
+## Interactive Features
+- **Search Box:** Users can type an anime name and click search.  
+- **Dynamic Card:** Displays anime information (title, image, score, synopsis) with background color that changes based on the score.  
+- **Recent Searches:** Shows the last 12 searched anime as clickable boxes. Clicking a recent search updates the main card without fetching again.  
+- **Input Validation & Rate Limiting:** Alerts the user if the input is empty or if requests are being made too quickly.  
 
-Interactive Features
+## Async Operation Used
+- The app uses **async/await** to fetch anime data from the **Jikan API**.  
+- JSON data is parsed to extract necessary information for display on the card and recent searches.  
 
-Search Box: Users can type an anime name and click search.
-
-Dynamic Card: Displays anime information (title, image, score, synopsis) with background color that changes based on the score.
-
-Recent Searches: Shows the last 12 searched anime as clickable boxes. Clicking a recent search updates the main card without fetching again.
-
-Input Validation & Rate Limiting: Alerts the user if the input is empty or if requests are being made too quickly.
-
-Async Operation Used
-
-The app uses async/await to fetch anime data from the Jikan API.
-
-JSON data is parsed to extract necessary information for display on the card and recent searches.
-
-Notes for the Grader
-
-The project shows an alert if an anime name is not found.
-
-Background colors help users quickly identify the quality/score of an anime.
-
-Dynamic content updates are done in JavaScript without reloading the page.
-
-Max 12 recent searches are stored for convenience and performance.
-
-When the page first loads, only the text input and search button are visible.
-
-The main card becomes scrollable if the content is too long.
+## Notes for the Grader
+- The project shows an alert if an anime name is not found.  
+- Background colors help users quickly identify the quality/score of an anime.  
+- Dynamic content updates are done in JavaScript without reloading the page.  
+- Max 12 recent searches are stored for convenience and performance.  
+- When the page first loads, only the text input and search button are visible.  
+- The main card becomes scrollable if the content is too long.
