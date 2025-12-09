@@ -1,4 +1,4 @@
-const input_box = document.getElementById("search-input");
+const inputBox = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 
 const card = document.getElementById("anime-card");
@@ -10,86 +10,83 @@ const grid = document.getElementById("recent-grid");
 const recentTitle = document.getElementById("recent-title");
 
 searchButton.addEventListener('click', async() => {
-    const name = input_box.value.trim();
+    const name = inputBox.value.trim();
 
     if (name === "") {
         alert("Please type an anime name.");
         return;
     }
+    //just to be safe
+    if (!safeToRequest()){
+        alert("You are going too fast, please wait a momment");
+        return
+    }
+
     // disable the button to prevent spamming
     searchButton.disabled = true;
 
-    card.classList.add("hidden");
+    card.classList.add("hidden");// needed while waiting for fetch
 
     try {
+        
+
+        //fetching
         const response = await fetch(`https://api.jikan.moe/v4/anime?q=${name}`);
 
         const data = await response.json();
 
         if (!data.data || data.data.length === 0) {
             alert("Anime not found.");
+            searchButton.disabled = false;
             return;
         }
-
+        //take the first item from the array
         const anime = data.data[0];
-        const Title = anime.title;
-        const synopsis = anime.synopsis;
-        const imageUrl = anime.images.jpg.image_url;
+        //get score if its there else n/a
         const score = anime.score || "N/A";
         let backgroundColor = null
 
-
-        //set the values
-        animeImage.src = imageUrl;
-        animeTitle.textContent = Title;
-        animeText.textContent = synopsis;
-        animeScore.textContent = `Score: ${score}`;
-
+        //assign backgorond color base on score
         if (score === "N/A") {
             backgroundColor = "#E0E0E0"; // gray
         }else if (score >= 8) {
-        backgroundColor = "#E8F5E9"; // light green
+            backgroundColor = "#E8F5E9"; // light green
         } else if (score >= 6) {
-        backgroundColor = "#FFF8E1"; // light yellow
+         backgroundColor = "#FFF8E1"; // light yellow
         } else if (score >= 3) {
-        backgroundColor = "#FFF3E0"; // light orange
+            backgroundColor = "#FFF3E0"; // light orange
         } else {
-        backgroundColor = "#FFEBEE"; // light red
+            backgroundColor = "#FFEBEE"; // light red
         }
 
-        //set the background color
-        card.style.backgroundColor = backgroundColor;
-
-        //create object
-        const saveDate = {
+        //create object with value
+        const infoData = {
             backgroundColor: backgroundColor,
-            image: imageUrl,
-            title: Title,
+            image: anime.images.jpg.image_url,
+            title: anime.title,
             score: score,
-            synopsis: synopsis,
+            synopsis: anime.synopsis || "No synopsis available for this anime.",
         };
+        //call
+        updateCard(infoData);
+        addRecentSearch(infoData);
 
-        addRecentSearch(saveDate);
-
-        setTimeout(() => {
-            card.classList.remove("hidden");
-        }, 50);
-
-        // reenable after 500ms
-        setTimeout(() => {
-            searchButton.disabled = false;
-        }, 500);
 
     } catch (error) {
         console.log(error);
         alert("There was a problem. Try again.");
+
+    } finally {
+      // reenable button after 500ms
+        setTimeout(() => {
+            searchButton.disabled = false;
+        }, 500);
     }
 });
 
 
 //add to recent
 const recentAnimeData = {}; // key = title, value = full save object
-
 function addRecentSearch(saveData) {
 
     // show the recent h3
@@ -164,13 +161,23 @@ grid.addEventListener("click", (e) => {
   const info = recentAnimeData[key]; // get the saved info from obj
 
     // show info in main card
+    updateCard(info)
+});
+
+//display the information
+function updateCard(info) {
+    // card.classList.add("hidden"); //hide card
+    //set values
     animeImage.src = info.image;
     animeTitle.textContent = info.title;
     animeText.textContent = info.synopsis;
     animeScore.textContent = `Score: ${info.score}`;
     card.style.backgroundColor = info.backgroundColor;
 
-});
+    setTimeout(() => {
+        card.classList.remove("hidden");//show the card after 50ms
+    }, 50);
+}
 
 
 
@@ -187,7 +194,6 @@ setInterval(() => (requestsThisSecond = 0), 1000); // every second
 
 // returns true if safe, false otherwise
 function safeToRequest() {
-
     if (requestsThisMinute < MAX_PER_MINUTE && requestsThisSecond < MAX_PER_SECOND) {
     requestsThisMinute++;//increase counters
     requestsThisSecond++;
