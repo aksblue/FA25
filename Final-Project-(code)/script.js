@@ -71,7 +71,7 @@ searchButton.addEventListener('click', async() => {
         updateCard(infoData);
         addRecentSearch(infoData);
 
-
+    // catch any unforeseen errors
     } catch (error) {
         console.log(error);
         alert("There was a problem. Try again.");
@@ -102,7 +102,7 @@ function addRecentSearch(saveData) {
     let existingBox = grid.querySelector(`[data-key="${key}"]`);
 
     if (existingBox) {
-        // move it to furst line
+        // move it to first line
         grid.prepend(existingBox);
         return;
     }
@@ -166,8 +166,6 @@ grid.addEventListener("click", (e) => {
 
 //display the information
 function updateCard(info) {
-    // card.classList.add("hidden"); //hide card
-    //set values
     animeImage.src = info.image;
     animeTitle.textContent = info.title;
     animeText.textContent = info.synopsis;
